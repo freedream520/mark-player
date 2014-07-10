@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="GB2312">
+	<title>{{team.name}} {{player.name}}</title>
+</head>
+<body>
+
+
+
+
+
+	<h1>{{ player.name }}</h1>
+
+	{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+	<h3>player info</h3>
+	<p>{{ player.name }} is player of {{team.name }}</p>
+	<p>{{player.ave_mark}}point</p>
+
+
+</body>
+</html>
+
+
+

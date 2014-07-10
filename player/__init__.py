@@ -1,0 +1,1 @@
+print("here in player 's __init__")

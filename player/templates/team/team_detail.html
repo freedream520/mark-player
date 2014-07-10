@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="GB2312">
+	<title>{{team.name}}</title>
+</head>
+<body>
+
+
+	<h1>{{ team.name }}</h1>
+
+	
+	{% for player in team.player_set.all %}
+		<li><a href="{% url 'team:player' team.id player.id %}">{{ player.name }}</a></li>
+
+    
+	{% endfor %}
+	
+	
+	
+	{% for player in team.player_set.all %}
+	<form action="" method="post">
+		<input type="submit" value="mark" />
+		<label><a href="{% url 'team:player' team.id player.id %}">{{ player.name }}</a></label>
+		</br>
+	{% endfor %}
+	</form>
+	
+	
+	
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="GB2312">
+	<title>team lists</title>
+</head>
+<body>
+
+
+
+{% if team_list %}
+    <ul>
+    {% for team in team_list %}
+        <li><a href="{% url 'team:teamDetail' team.id %}">{{ team.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No teams are available.</p>
+{% endif %}
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+<!--show team list-->
+
