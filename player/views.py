@@ -23,3 +23,43 @@ def playerDetail(request,team_id,player_id):
     player = get_object_or_404(Player, pk=player_id)
     return render(request, 'team/player.html', {'player': player,
                                                 'team':team})    
+
+def mark(request,team_id,player_id):
+    print('in mark function')
+    team = get_object_or_404(Team, pk=team_id)
+    player = get_object_or_404(Player, pk=player_id)
+    ori_mark = player.ave_mark
+    new_mark = int(request.POST['mark_input'])
+    mt=player.mark_times 
+    mt+=1
+    if ori_mark == 0:
+        player.ave_mark = new_mark
+    else:
+        player.ave_mark = (ori_mark+new_mark)/mt
+        
+    player.mark_times =mt
+    
+    player.save()
+    return render(request, 'team/player.html', {'player': player,
+                                                'team':team})  
+    '''  
+    try:
+        selected_player= team.choice_set.get(pk=request.POST['selected_player'])
+    except (KeyError, Player.DoesNotExist):
+        # Redisplay the poll voting form.
+        return render(request, 'team/team_detail.html', {'team': team,
+                                                         'error_message': "no this player.",})
+    
+    else:   
+        ori_mark = selected_player.ave_mark
+        new_mark = request.POST['mark_input']
+        selected_player.mark_times +=1
+        if ori_mark == 0:
+            selected_player.ave_mark = new_mark
+        else:
+            selected_player.ave_mark = (ori_mark+new_mark)/selected_player.mark_times
+    
+        selected_player.save()
+        return render(request, 'team/player.html', {'player': selected_player,
+                                                'team':team})    
+    '''

@@ -17,7 +17,18 @@
 	<h3>player info</h3>
 	<p>{{ player.name }} is player of {{team.name }}</p>
 	<p>{{player.ave_mark}}point</p>
-
+	<form action="{%url 'team:mark' team.id player.id%}" method="post">
+		{% csrf_token %}
+		<input type="text"  name='mark_input'  />
+		
+		
+		<input type='text' style='display:none'  value='{{ player.id }}' />
+		
+		
+		</br>
+		
+	<input type="submit" value="mark" />
+	</form>
 
 </body>
 </html>

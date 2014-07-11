@@ -13,5 +13,5 @@ urlpatterns = patterns('',
    # url(r'^(?P<class_id>\d+)/(?P<student_id>\d+)/$', views.playDetail, name='student'),
     
     #url(r'^(?P<class_id>\d+)/results/$', views.results, name='results'),
-
+    url(r'^(?P<team_id>\d+)/(?P<player_id>\d+)/mark/$', views.mark, name='mark'),
 )
