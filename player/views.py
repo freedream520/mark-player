@@ -1,7 +1,7 @@
 
 from django.shortcuts import render , get_object_or_404
-
-
+from django.http import HttpResponse,HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from player.models import *
 # Create your views here.
 def index(request):
@@ -31,17 +31,22 @@ def mark(request,team_id,player_id):
     ori_mark = player.ave_mark
     new_mark = int(request.POST['mark_input'])
     mt=player.mark_times 
-    mt+=1
+    
+    print(ori_mark)
+    print(new_mark)
+    print(mt)
     if ori_mark == 0:
         player.ave_mark = new_mark
     else:
-        player.ave_mark = (ori_mark+new_mark)/mt
+        player.ave_mark = (ori_mark*mt+new_mark)/(mt+1)
         
-    player.mark_times =mt
+    player.mark_times =mt+1
     
     player.save()
-    return render(request, 'team/player.html', {'player': player,
-                                                'team':team})  
+    #return render(request, 'team/player.html', {'player': player,'team':team})  
+    return HttpResponseRedirect(reverse('team:player', args=(team_id,player_id)))
+    
+    
     '''  
     try:
         selected_player= team.choice_set.get(pk=request.POST['selected_player'])
