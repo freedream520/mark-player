@@ -33,6 +33,7 @@ def playerDetail(request,team_id,player_id):
     '''
     team=getTeamById(team_id)
     player=getPlayerById(player_id)
+    
     return render(request, 'team/player.html', {'player': player,
                                                 'team':team})    
 

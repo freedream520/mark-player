@@ -9,7 +9,7 @@ class Team(models.Model):
 class Player(models.Model):
     name = models.CharField(max_length=10)
     team_id = models.ForeignKey(Team)
-    ave_mark = models.IntegerField(default=0)
+    ave_mark = models.FloatField(default=0)
     mark_times = models.IntegerField(default=0)
     
     
