@@ -16,18 +16,21 @@ class Player(models.Model):
     def __str__(self):  # Python 3: def __str__(self):
         return self.name
     
-    
-''' 
-def insert_player_data():
-    player=[x for x in range(4)]
-    player=Team.objects.get(pk=111)
-    player[0]=Player(id=11110,name='Lionel Messi',team_id=player,ave_mark=0,mark_time=0)
-    player[1]=Player(id=11114,name='Javier Mascherano',team_id=player,ave_mark=0,mark_time=0)
-    player[2]=Player(id=11101,name='Sergio Romero',team_id=player,ave_mark=0,mark_time=0)
-    player[3]=Player(id=11116,name='Marcos Rojo',team_id=player,ave_mark=0,mark_time=0)
-    (x.save() for x in player)
-    print('insert_player_data end')
-    pass
-
-insert_player_data()
-'''
+    def setNewAveMark(self,new_mark):
+        if new_mark>10 or new_mark<0:
+            pass
+        
+        ori_mark = self.ave_mark
+        mt=self.mark_times 
+        
+        print('origin ',ori_mark)
+        print('new    ',new_mark)
+        print('times  ',mt)
+        
+        if ori_mark == 0:
+            self.ave_mark = new_mark
+        else:
+            self.ave_mark = (ori_mark*mt+new_mark)/(mt+1)
+        
+            self.mark_times =mt+1
+        pass
