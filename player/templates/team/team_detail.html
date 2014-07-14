@@ -7,10 +7,10 @@
 </head>
 <body>
 
-
+<h3>球队信息</h3>
 	<h1>{{ team.name }}</h1>
 
-	
+	<h3>球员</h3>
 	{% for player in team.player_set.all %}
 		<li><a href="{% url 'team:player' team.id player.id %}">{{ player.name }}</a></li>
 

@@ -1,9 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
 	<meta charset="GB2312">
 	<title>{{team.name}} {{player.name}}</title>
+	
+	{% load staticfiles %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'player.css' %}" />
+	
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	
 	
@@ -14,20 +19,42 @@
 
 
 
-	<h1>{{ player.name }}</h1>
-
-	{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-	<h3>player info</h3>
-	<p>{{ player.name }} is player of {{team.name }}</p>
-	<p>{{player.ave_mark}} point</p>
-	<form action="{%url 'team:mark' team.id player.id%}" method="post">
-		{% csrf_token %}
-		<input type="text"  name='mark_input'  id='mark_input'/>
-		<p id='message'>please input the number from 1 to 10	</p>
-		</br>
+	<div id='content'>
+	<section id='team_member_sec'>
 	
-	<input type="submit" value="mark" id='sButton' />
-	</form>
+		{% if player_set %}
+		
+		<ul>
+			{% for o_player in player_set %}
+			<li><a href="{% url 'team:player' team.id o_player.id %}">{{ o_player.name }}</a></li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p>No other player </p>
+		{% endif %}
+	</section>
+	
+	
+	<section id='player_sec'>
+		<h1>{{ player.name }}</h1>
+		<h3>球员</h3>
+		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+	
+		<p>{{ player.name }} is player of {{team.name }}</p>
+		<p>平均分{{player.ave_mark}} </p>
+		<form action="{%url 'team:mark' team.id player.id%}" method="post">
+			{% csrf_token %}
+			<input type="text"  name='mark_input'  id='mark_input'/>
+			<p id='message'>please input the number from 1 to 10	</p>
+			</br>
+	
+		<input type="submit" value="mark" id='sButton' />
+		</form>
+	</section>
+	<div id='fff' ></div>
+	</div>
+	
+	
 	<script>
 		$( "#mark_input" ).on( "blur", function() {
 		    var mInput=$( this ).val()

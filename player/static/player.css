@@ -1,0 +1,30 @@
+
+#content{
+	border: solid 1px black;
+	width:78%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#team_member_sec{
+	border: solid 1px black;
+	width:240px;
+	float:left;
+
+}
+
+#player_sec{
+	border: solid 1px red;
+	margin-left:10px;
+	float:left;
+	
+}
+
+#fff{
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	height: 0px;
+	width: 0px;
+	border: none;
+}

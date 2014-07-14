@@ -1,0 +1,10 @@
+#team_member_sec{
+	border: solid 1px black;
+	width:150px;
+	float:left;
+
+}
+
+#player_sec{
+	width:30%;
+}

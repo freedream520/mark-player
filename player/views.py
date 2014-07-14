@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from player.models import *
 from player.dao.playerDao import *
 from player.dao.teamDao import *
-from player.action.playerAction import setNewMark
+from player.action import playerAction
 # Create your views here.
 def index(request):
     
@@ -33,9 +33,11 @@ def playerDetail(request,team_id,player_id):
     '''
     team=getTeamById(team_id)
     player=getPlayerById(player_id)
-    
+    player_set=team.player_set.all()
+    #print(player_set,'player set')
     return render(request, 'team/player.html', {'player': player,
-                                                'team':team})    
+                                                'team':team,
+                                                'player_set':player_set})    
 
 def mark(request,team_id,player_id):
     '''
@@ -44,7 +46,7 @@ def mark(request,team_id,player_id):
     '''
     
     player=getPlayerById(player_id)
-    new_mark = int(request.POST['mark_input'])
+    new_mark = float(request.POST['mark_input'])
     
     '''
     ori_mark = player.ave_mark
@@ -66,7 +68,7 @@ def mark(request,team_id,player_id):
     player.setNewAveMark(new_mark)
     player.save()
     '''
-    setNewMark(player,new_mark)
+    playerAction.setNewMark(player,new_mark)
     #return render(request, 'team/player.html', {'player': player,'team':team})  
     return HttpResponseRedirect(reverse('team:player', args=(team_id,player_id)))
     
