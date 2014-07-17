@@ -20,10 +20,21 @@
 
 
 	<div id='content'>
-	<section id='team_member_sec'>
+	<section id='menu'>
+		<p>team</p>
+		{% if team_list %}
+		<ul>
+		{% for team in team_list %}
+        <li><a href="{% url 'team:teamDetail' team.id %}">{{ team.name }}</a></li>
+		{% endfor %}
+		</ul>
+		{% else %}
+			<p>No teams are available.</p>
 	
-		{% if player_set %}
+		{% endif %}
 		
+		{% if player_set %}
+		<p>player</p>
 		<ul>
 			{% for o_player in player_set %}
 			<li><a href="{% url 'team:player' team.id o_player.id %}">{{ o_player.name }}</a></li>
@@ -41,14 +52,15 @@
 		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 	
 		<p>{{ player.name }} is player of {{team.name }}</p>
-		<p>平均分{{player.ave_mark}} </p>
+		<p id='ave_mark'>平均分{{player.ave_mark}} </p>
+		<p id=''>打分次数{{player.mark_times}} </p>
 		<form action="{%url 'team:mark' team.id player.id%}" method="post">
 			{% csrf_token %}
 			<input type="text"  name='mark_input'  id='mark_input'/>
 			<p id='message'>please input the number from 1 to 10	</p>
 			</br>
 	
-		<input type="submit" value="mark" id='sButton' />
+		<input type="submit" value="mark" id='sButton' disabled='true'/>
 		</form>
 	</section>
 	<div id='fff' ></div>

@@ -28,9 +28,9 @@ class Player(models.Model):
         print('times  ',mt)
         
         if ori_mark == 0:
-            self.ave_mark = new_mark
+            self.ave_mark = round(new_mark,1)
         else:
-            self.ave_mark = (ori_mark*mt+new_mark)/(mt+1)
+            self.ave_mark =round( (ori_mark*mt+new_mark)/(mt+1) ,1)
         
             self.mark_times =mt+1
         pass

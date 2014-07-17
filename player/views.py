@@ -37,6 +37,7 @@ def playerDetail(request,team_id,player_id):
     #print(player_set,'player set')
     return render(request, 'team/player.html', {'player': player,
                                                 'team':team,
+                                                'team_list': getTeams(),
                                                 'player_set':player_set})    
 
 def mark(request,team_id,player_id):
