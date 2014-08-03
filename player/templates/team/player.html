@@ -10,14 +10,9 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'player.css' %}" />
 	
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	
-	
+
 </head>
 <body>
-
-
-
-
 
 	<div id='content'>
 	<section id='menu'>
@@ -30,9 +25,9 @@
 		</ul>
 		{% else %}
 			<p>No teams are available.</p>
-	
+
 		{% endif %}
-		
+
 		{% if player_set %}
 		<p>player</p>
 		<ul>
@@ -44,16 +39,17 @@
 		<p>No other player </p>
 		{% endif %}
 	</section>
-	
-	
+
+
 	<section id='player_sec'>
 		<h1>{{ player.name }}</h1>
 		<h3>球员</h3>
 		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-	
 		<p>{{ player.name }} is player of {{team.name }}</p>
-		<p id='average_mark'>平均分{{player.average_mark}} </p>
-		<p id=''>打分次数{{player.mark_times}} </p>
+		<p id='average_mark'>平均分{{player.average_mark}}</p>
+		<p id=''>打分次数{{player.mark_times}}</p>
+		<p id=''>最后打分{{player.last_mark_time}}</p>
+
 		<form action="{%url 'team:mark' team.id player.id%}" method="post">
 			{% csrf_token %}
 			<input type="text"  name='mark_input'  id='mark_input'/>

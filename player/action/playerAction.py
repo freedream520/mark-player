@@ -1,5 +1,6 @@
 
 def setNewMark(player,new_mark):
-    player.setNewAveMark(new_mark)
+    mark_time = player.setNewAveMark(new_mark)
     player.save()
-    pass
+    return mark_time
+    

@@ -26,17 +26,24 @@ def playerDetail(request, team_id, player_id):
     '''
     team = teamDao.getTeamById(team_id)
     player = playerDao.getPlayerById(player_id)
+    '''
+    mark_date = player.last_mark_time.date()
+    mark_time = str(player.last_mark_time.time())[:5]
+    '''
     player_set = team.player_set.all()
     #print(player_set,'player set')
     return render(request, 'team/player.html', {'player': player,
                                                 'team': team,
                                                 'team_list': teamDao.getTeams(),
-                                                'player_set': player_set})    
+                                                'player_set': player_set,
+                                               })    
 
 def mark(request, team_id, player_id):
     player = playerDao.getPlayerById(player_id)
     new_mark = float(request.POST['mark_input'])
 
-    playerAction.setNewMark(player, new_mark)
+    mark_time = playerAction.setNewMark(player, new_mark)
     #return render(request, 'team/player.html', {'player': player,'team':team})  
     return HttpResponseRedirect(reverse('team:player', args=(team_id, player_id)))
+
+
