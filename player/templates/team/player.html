@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -52,7 +52,7 @@
 		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 	
 		<p>{{ player.name }} is player of {{team.name }}</p>
-		<p id='ave_mark'>平均分{{player.ave_mark}} </p>
+		<p id='average_mark'>平均分{{player.average_mark}} </p>
 		<p id=''>打分次数{{player.mark_times}} </p>
 		<form action="{%url 'team:mark' team.id player.id%}" method="post">
 			{% csrf_token %}
